@@ -3,12 +3,14 @@ package br.com.alura;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pedido")
+@Table(name = "pedidos")
 public class Pedido {
 
   @Id
@@ -18,6 +20,7 @@ public class Pedido {
   private LocalDate data;
   private Long cliente_id;
   private BigDecimal desconto;
+  @Enumerated(EnumType.STRING)
   private TipoDesconto tipo_desconto;
 
   public LocalDate getData() {

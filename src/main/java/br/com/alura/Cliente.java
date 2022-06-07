@@ -1,8 +1,12 @@
 package br.com.alura;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "clientes")
 public class Cliente {
 
   @Id
