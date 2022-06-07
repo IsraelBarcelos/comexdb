@@ -3,7 +3,6 @@ package br.com.alura;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,14 +13,15 @@ import javax.persistence.Table;
 public class Pedido {
 
   @Id
-  @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+  @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
   private Long id;
 
   private LocalDate data;
-  private Long cliente_id;
+  private Long clienteId;
   private BigDecimal desconto;
-  @Enumerated(EnumType.STRING)
-  private TipoDesconto tipo_desconto;
+
+  @Enumerated(javax.persistence.EnumType.STRING)
+  private TipoDesconto tipoDesconto;
 
   public LocalDate getData() {
     return data;
@@ -31,12 +31,12 @@ public class Pedido {
     this.data = data;
   }
 
-  public Long getCliente_id() {
-    return cliente_id;
+  public Long getclienteId() {
+    return clienteId;
   }
 
-  public void setCliente_id(Long cliente_id) {
-    this.cliente_id = cliente_id;
+  public void setclienteId(Long clienteId) {
+    this.clienteId = clienteId;
   }
 
   public BigDecimal getDesconto() {
@@ -47,12 +47,12 @@ public class Pedido {
     this.desconto = desconto;
   }
 
-  public TipoDesconto getTipo_desconto() {
-    return tipo_desconto;
+  public TipoDesconto getTipoDesconto() {
+    return tipoDesconto;
   }
 
-  public void setTipo_desconto(TipoDesconto tipo_desconto) {
-    this.tipo_desconto = tipo_desconto;
+  public void settipoDesconto(TipoDesconto tipoDesconto) {
+    this.tipoDesconto = tipoDesconto;
   }
 
   public Long getId() {
@@ -71,12 +71,12 @@ public class Pedido {
       id +
       ", data=" +
       data +
-      ", cliente_id=" +
-      cliente_id +
+      ", clienteId=" +
+      clienteId +
       ", desconto=" +
       desconto +
-      ", tipo_desconto=" +
-      tipo_desconto +
+      ", tipoDesconto=" +
+      tipoDesconto +
       '}'
     );
   }

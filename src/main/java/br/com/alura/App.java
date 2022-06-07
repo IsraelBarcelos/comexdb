@@ -1,11 +1,11 @@
 package br.com.alura;
 
+import br.com.alura.dao.ProdutoDao;
+import br.com.alura.utils.JPAUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  * Hello world!
@@ -37,23 +37,29 @@ public class App {
     produto.setQuantidade_estoque(10);
     produto.setCategoria_id(1L);
 
-    Pedido pedido = new Pedido();
-    pedido.setData(LocalDate.now());
-    pedido.setCliente_id(1L);
-    pedido.setDesconto(new BigDecimal("10.00"));
-    pedido.setTipo_desconto(TipoDesconto.NENHUM);
-    
+    EntityManager em = JPAUtil.getEntityManager();
 
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory(
-      "comexdb"
-    );
+    ProdutoDao produtoDao = new ProdutoDao(em);
+    produtoDao.cadastrar(produto);
+    em.close();
 
-    EntityManager manager = factory.createEntityManager();
-    manager.getTransaction().begin();
-    manager.persist(cliente);
-    manager.persist(categoria);
-    manager.persist(produto);
-    manager.persist(pedido);
-    manager.getTransaction().commit();
+    //Pedido pedido = new Pedido();
+    //pedido.setData(LocalDate.now());
+    //pedido.setCliente_id(1L);
+    //pedido.setDesconto(new BigDecimal("10.00"));
+    //pedido.setTipo_desconto(TipoDesconto.NENHUM);
+    //
+//
+    //EntityManagerFactory factory = Persistence.createEntityManagerFactory(
+    //  "comexdb"
+    //);
+//
+    //EntityManager manager = factory.createEntityManager();
+    //manager.getTransaction().begin();
+    //manager.persist(cliente);
+    //manager.persist(categoria);
+    //manager.persist(produto);
+    //manager.persist(pedido);
+    //manager.getTransaction().commit();
   }
 }
