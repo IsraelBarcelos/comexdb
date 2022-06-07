@@ -1,9 +1,9 @@
 package br.com.alura;
 
+import br.com.alura.dao.ProdutoDao;
+import br.com.alura.utils.JPAUtil;
 import java.math.BigDecimal;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  * Hello world!
@@ -19,12 +19,10 @@ public class App {
     produto.setQuantidade_estoque(10);
     produto.setCategoria_id(1L);
 
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory(
-      "comexdb"
-    );
+    EntityManager em = JPAUtil.getEntityManager();
 
-    EntityManager manager = factory.createEntityManager();
-
-    manager.persist(produto);
+    ProdutoDao produtoDao = new ProdutoDao(em);
+    produtoDao.cadastrar(produto);
+    em.close();
   }
 }
