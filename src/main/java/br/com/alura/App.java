@@ -1,5 +1,7 @@
 package br.com.alura;
 
+import br.com.alura.dao.ClienteDao;
+import br.com.alura.dao.PedidoDao;
 import br.com.alura.dao.ProdutoDao;
 import br.com.alura.utils.JPAUtil;
 import java.math.BigDecimal;
@@ -19,47 +21,24 @@ public class App {
     categoria.setNome("Informática");
     categoria.setAtivo(true);
 
-    Cliente cliente = new Cliente();
-    cliente.setNome("Maria");
-    cliente.setCpf("123.456.789-10");
-    cliente.setTelefone("(11) 98765-4321");
-    cliente.setRua("Rua dos Bobos");
-    cliente.setNumero(0);
-    cliente.setComplemento("Apto. 101");
-    cliente.setBairro("Centro");
-    cliente.setCidade("São Paulo");
-    cliente.setEstado("SP");
-
-    Produto produto = new Produto();
-    produto.setNome("Caneta");
-    produto.setDescricao("Caneta Bic Preta");
-    produto.setPreco_unitario(new BigDecimal("1.99"));
-    produto.setQuantidade_estoque(10);
-    produto.setCategoria_id(1L);
-
+    Cliente cliente = new Cliente("Maria", "123.456.789-10", "(11) 98765-4321", new Endereco("Rua dos Bobos", 0, "Apto. 101", "centro", "são paulo", "sp"));
+    Produto produto = new Produto("Caneta","Caneta Bic Preta", new BigDecimal("1.99"), 10, 1L );
+    
     EntityManager em = JPAUtil.getEntityManager();
 
-    ProdutoDao produtoDao = new ProdutoDao(em);
-    produtoDao.cadastrar(produto);
-    em.close();
+    em.getTransaction().begin();
 
-    //Pedido pedido = new Pedido();
-    //pedido.setData(LocalDate.now());
-    //pedido.setCliente_id(1L);
-    //pedido.setDesconto(new BigDecimal("10.00"));
-    //pedido.setTipo_desconto(TipoDesconto.NENHUM);
-    //
-//
-    //EntityManagerFactory factory = Persistence.createEntityManagerFactory(
-    //  "comexdb"
-    //);
-//
-    //EntityManager manager = factory.createEntityManager();
-    //manager.getTransaction().begin();
-    //manager.persist(cliente);
-    //manager.persist(categoria);
-    //manager.persist(produto);
-    //manager.persist(pedido);
-    //manager.getTransaction().commit();
+    ProdutoDao produtoDao = new ProdutoDao(em);
+    ClienteDao clienteDao = new ClienteDao(em);
+    PedidoDao pedidoDao = new PedidoDao(em);
+    produtoDao.cadastrar(produto);
+    clienteDao.cadastrar(cliente);
+
+
+    Pedido pedido = new Pedido(LocalDate.now(), cliente.getId() , new BigDecimal(0), TipoDesconto.NENHUM);
+    pedidoDao.cadastrar(pedido);
+
+
+    em.getTransaction().commit();
   }
 }

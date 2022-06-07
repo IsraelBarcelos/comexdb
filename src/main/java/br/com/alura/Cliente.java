@@ -1,5 +1,6 @@
 package br.com.alura;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,12 +17,16 @@ public class Cliente {
   private String nome;
   private String cpf;
   private String telefone;
-  private String rua;
-  private int numero;
-  private String complemento;
-  private String bairro;
-  private String cidade;
-  private String estado;
+  @Embedded
+  private Endereco endereco;
+
+
+  public Cliente(String nome, String cpf, String telefone, Endereco endereco) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.telefone = telefone;
+    this.endereco = endereco;
+  }
 
   public Long getId() {
     return id;
@@ -55,52 +60,12 @@ public class Cliente {
     this.telefone = telefone;
   }
 
-  public String getRua() {
-    return rua;
+  public Endereco getEndereco() {
+    return endereco;
   }
 
-  public void setRua(String rua) {
-    this.rua = rua;
-  }
-
-  public int getNumero() {
-    return numero;
-  }
-
-  public void setNumero(int numero) {
-    this.numero = numero;
-  }
-
-  public String getComplemento() {
-    return complemento;
-  }
-
-  public void setComplemento(String complemento) {
-    this.complemento = complemento;
-  }
-
-  public String getBairro() {
-    return bairro;
-  }
-
-  public void setBairro(String bairro) {
-    this.bairro = bairro;
-  }
-
-  public String getCidade() {
-    return cidade;
-  }
-
-  public void setCidade(String cidade) {
-    this.cidade = cidade;
-  }
-
-  public String getEstado() {
-    return estado;
-  }
-
-  public void setEstado(String estado) {
-    this.estado = estado;
+  public void setEndereco(Endereco endereco) {
+    this.endereco = endereco;
   }
 
   @Override
@@ -119,21 +84,21 @@ public class Cliente {
       telefone +
       '\'' +
       ", rua='" +
-      rua +
+      endereco.getRua() +
       '\'' +
       ", numero=" +
-      numero +
+      endereco.getNumero() +
       ", complemento='" +
-      complemento +
+      endereco.getComplemento() +
       '\'' +
       ", bairro='" +
-      bairro +
+      endereco.getBairro() +
       '\'' +
       ", cidade='" +
-      cidade +
+      endereco.getCidade() +
       '\'' +
       ", estado='" +
-      estado +
+      endereco.getEstado() +
       '\'' +
       '}'
     );

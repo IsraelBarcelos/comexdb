@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "produto")
+@Table(name = "produtos")
 public class Produto {
 
   @Id
@@ -19,6 +19,14 @@ public class Produto {
   private BigDecimal preco_unitario;
   private int quantidade_estoque;
   private Long categoria_id;
+
+  public Produto(String nome, String descricao, BigDecimal preco_unitario, int quantidade_estoque, Long categoria_id) {
+    this.nome = nome;
+    this.descricao = descricao;
+    this.preco_unitario = preco_unitario;
+    this.quantidade_estoque = quantidade_estoque;
+    this.categoria_id = categoria_id;
+  }
 
   public Long getId() {
     return id;
