@@ -6,7 +6,7 @@ import javax.persistence.Id;
 public class Cliente {
 
   @Id
-  @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+  @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
   private Long id;
 
   private String nome;
