@@ -1,6 +1,6 @@
 package br.com.alura.dao;
 
-import br.com.alura.Pedido;
+import br.com.alura.models.Pedido;
 import javax.persistence.EntityManager;
 
 public class PedidoDao {

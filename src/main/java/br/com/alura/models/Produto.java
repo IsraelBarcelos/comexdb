@@ -1,4 +1,4 @@
-package br.com.alura;
+package br.com.alura.models;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
@@ -20,7 +20,15 @@ public class Produto {
   private int quantidade_estoque;
   private Long categoria_id;
 
-  public Produto(String nome, String descricao, BigDecimal preco_unitario, int quantidade_estoque, Long categoria_id) {
+  public Produto() {}
+
+  public Produto(
+    String nome,
+    String descricao,
+    BigDecimal preco_unitario,
+    int quantidade_estoque,
+    Long categoria_id
+  ) {
     this.nome = nome;
     this.descricao = descricao;
     this.preco_unitario = preco_unitario;

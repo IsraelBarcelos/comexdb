@@ -1,11 +1,11 @@
 package br.com.alura.dao;
 
+import br.com.alura.models.Cliente;
 import javax.persistence.EntityManager;
 
-import br.com.alura.Cliente;
-
 public class ClienteDao {
-    private EntityManager em;
+
+  private EntityManager em;
 
   public ClienteDao(EntityManager em) {
     this.em = em;

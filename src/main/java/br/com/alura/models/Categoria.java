@@ -1,4 +1,4 @@
-package br.com.alura;
+package br.com.alura.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

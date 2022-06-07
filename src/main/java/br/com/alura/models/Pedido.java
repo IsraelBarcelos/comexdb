@@ -1,4 +1,4 @@
-package br.com.alura;
+package br.com.alura.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -20,65 +20,64 @@ public class Pedido {
   private LocalDate data;
   private Long cliente_id;
   private BigDecimal desconto;
+
+  @Enumerated(EnumType.STRING)
   private TipoDesconto tipo_desconto;
 
-  public Pedido(LocalDate data, Long cliente_id, BigDecimal desconto, TipoDesconto tipo_desconto) {
+  public Pedido() {}
+
+  public Pedido(
+    LocalDate data,
+    Long cliente_id,
+    BigDecimal desconto,
+    TipoDesconto tipo_desconto
+  ) {
     this.data = data;
     this.cliente_id = cliente_id;
     this.desconto = desconto;
     this.tipo_desconto = tipo_desconto;
   }
-  
-  @Enumerated(EnumType.STRING)
-  private TipoDesconto tipoDesconto;
-  
+
   public LocalDate getData() {
     return data;
   }
-  
+
   public void setData(LocalDate data) {
     this.data = data;
   }
-  
+
   public Long getcliente_id() {
     return cliente_id;
   }
-  
+
   public void setcliente_id(Long cliente_id) {
     this.cliente_id = cliente_id;
   }
-  
+
   public BigDecimal getDesconto() {
     return desconto;
   }
-  
+
   public void setDesconto(BigDecimal desconto) {
     this.desconto = desconto;
   }
-  
-  public TipoDesconto getTipoDesconto() {
-    return tipoDesconto;
-  }
-  
-  public void settipoDesconto(TipoDesconto tipoDesconto) {
-    this.tipoDesconto = tipoDesconto;
-  }
-  
+
   public Long getId() {
     return id;
   }
-  
+
   public void setId(Long id) {
     this.id = id;
   }
+
   public TipoDesconto getTipo_desconto() {
     return tipo_desconto;
   }
-  
+
   public void setTipo_desconto(TipoDesconto tipo_desconto) {
     this.tipo_desconto = tipo_desconto;
   }
-  
+
   @Override
   public String toString() {
     return (
@@ -92,8 +91,8 @@ public class Pedido {
       ", desconto=" +
       desconto +
       ", tipoDesconto=" +
-      tipoDesconto +
+      tipo_desconto +
       '}'
-      );
-    }
+    );
+  }
 }

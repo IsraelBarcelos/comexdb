@@ -1,4 +1,4 @@
-package br.com.alura;
+package br.com.alura.models;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -17,9 +17,11 @@ public class Cliente {
   private String nome;
   private String cpf;
   private String telefone;
+
   @Embedded
   private Endereco endereco;
 
+  public Cliente() {}
 
   public Cliente(String nome, String cpf, String telefone, Endereco endereco) {
     this.nome = nome;
