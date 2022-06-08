@@ -1,14 +1,23 @@
 package br.com.alura.models;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "categorias")
 public class Categoria {
 
   @Id
-  @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+
+  public Categoria() {
+
+  }
 
   @Column(nullable = false)
   private String nome;
@@ -38,6 +47,15 @@ public class Categoria {
 
   public void setAtivo(boolean ativo) {
     this.ativo = ativo;
+  }
+
+  @Override
+  public String toString() {
+    return "Categoria{" +
+        "id=" + id +
+        ", nome='" + nome + '\'' +
+        ", ativo=" + ativo +
+        '}';
   }
 
   public static class Builder {
