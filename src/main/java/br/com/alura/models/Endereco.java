@@ -23,16 +23,16 @@ public class Endereco {
   @Column(nullable = false)
   private String estado;
 
-  public Endereco() {}
+  public Endereco() {
+  }
 
   public Endereco(
-    String rua,
-    int numero,
-    String complemento,
-    String bairro,
-    String cidade,
-    String estado
-  ) {
+      String rua,
+      int numero,
+      String complemento,
+      String bairro,
+      String cidade,
+      String estado) {
     this.rua = rua;
     this.numero = numero;
     this.complemento = complemento;
@@ -89,6 +89,18 @@ public class Endereco {
     this.estado = estado;
   }
 
+  @Override
+  public String toString() {
+    return "Endereco{" +
+        "rua='" + rua + '\'' +
+        ", numero=" + numero +
+        ", complemento='" + complemento + '\'' +
+        ", bairro='" + bairro + '\'' +
+        ", cidade='" + cidade + '\'' +
+        ", estado='" + estado + '\'' +
+        '}';
+  }
+
   public static class Builder {
 
     private String rua;
@@ -130,13 +142,12 @@ public class Endereco {
 
     public Endereco build() {
       return new Endereco(
-        this.rua,
-        this.numero,
-        this.complemento,
-        this.bairro,
-        this.cidade,
-        this.estado
-      );
+          this.rua,
+          this.numero,
+          this.complemento,
+          this.bairro,
+          this.cidade,
+          this.estado);
     }
   }
 }

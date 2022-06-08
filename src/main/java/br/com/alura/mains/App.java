@@ -21,41 +21,29 @@ public class App {
     categoria.setAtivo(true);
 
     Cliente cliente = new Cliente(
-      "Maria",
-      "123.456.789-10",
-      "(11) 98765-4321",
-      new Endereco("Rua dos Bobos", 0, "Apto. 101", "centro", "são paulo", "sp")
-    );
-    Produto produto = new Produto(
-      "Caneta",
-      "Caneta Bic Preta",
-      new BigDecimal("1.99"),
-      10,
-      1L
-    );
+        "Maria",
+        "123.456.789-10",
+        "(11) 98765-4321",
+        new Endereco("Rua dos Bobos", 0, "Apto. 101", "centro", "são paulo", "sp"));
 
     EntityManager em = JPAUtil.getEntityManager();
 
     em.getTransaction().begin();
 
-    ProdutoDAO produtoDao = new ProdutoDAO(em);
     ClienteDAO clienteDao = new ClienteDAO(em);
     PedidoDAO pedidoDao = new PedidoDAO(em);
-    produtoDao.cadastra(produto);
     clienteDao.cadastra(cliente);
     Pedido pedido1 = new Pedido(
-      LocalDate.now(),
-      cliente,
-      new BigDecimal(0),
-      TipoDescontoPedido.NENHUM
-    );
+        LocalDate.now(),
+        cliente,
+        new BigDecimal(0),
+        TipoDescontoPedido.NENHUM);
 
     Pedido pedido2 = new Pedido(
-      LocalDate.now(),
-      cliente,
-      new BigDecimal(10),
-      TipoDescontoPedido.FIDELIDADE
-    );
+        LocalDate.now(),
+        cliente,
+        new BigDecimal(10),
+        TipoDescontoPedido.FIDELIDADE);
 
     pedidoDao.cadastra(pedido1);
     pedidoDao.cadastra(pedido2);
