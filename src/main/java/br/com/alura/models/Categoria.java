@@ -1,9 +1,6 @@
 package br.com.alura.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "categorias")
@@ -12,8 +9,9 @@ public class Categoria {
   @Id
   @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
   private Long id;
-
+  @Column(nullable = false)
   private String nome;
+  @Column(nullable = false)
   private boolean ativo;
 
   public Long getId() {

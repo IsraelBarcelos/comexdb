@@ -1,10 +1,6 @@
 package br.com.alura.models;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "clientes")
@@ -13,10 +9,13 @@ public class Cliente {
   @Id
   @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
   private Long id;
-
+  @Column(nullable = false)
   private String nome;
+  @Column(nullable = false)
   private String cpf;
+  @Column(nullable = false)
   private String telefone;
+
 
   @Embedded
   private Endereco endereco;

@@ -1,15 +1,20 @@
 package br.com.alura.models;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Endereco {
-
+  @Column(nullable = false)
   private String rua;
+  @Column(nullable = false)
   private int numero;
   private String complemento;
+  @Column(nullable = false)
   private String bairro;
+  @Column(nullable = false)
   private String cidade;
+  @Column(nullable = false)
   private String estado;
 
   public Endereco() {}

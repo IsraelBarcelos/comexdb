@@ -1,10 +1,7 @@
 package br.com.alura.models;
 
 import java.math.BigDecimal;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "produtos")
@@ -13,11 +10,14 @@ public class Produto {
   @Id
   @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
   private Long id;
-
+  @Column(nullable = false)
   private String nome;
   private String descricao;
+  @Column(nullable = false)
   private BigDecimal preco_unitario;
+  @Column(nullable = false)
   private int quantidade_estoque;
+  @Column(nullable = false)
   private Long categoria_id;
 
   public Produto() {}

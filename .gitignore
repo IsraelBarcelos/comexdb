@@ -1,3 +1,5 @@
 /.idea/
 /.vscode/
 
+.idea/encodings.xml
+.idea/misc.xml

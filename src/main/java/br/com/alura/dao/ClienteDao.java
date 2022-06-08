@@ -1,6 +1,7 @@
 package br.com.alura.dao;
 
 import br.com.alura.models.Cliente;
+import java.util.List;
 import javax.persistence.EntityManager;
 
 public class ClienteDao {
@@ -25,5 +26,10 @@ public class ClienteDao {
 
   public Cliente buscarPorId(Long id) {
     return this.em.find(Cliente.class, id);
+  }
+
+  public List<Cliente> listaTodos() {
+    return this.em.createQuery("select c from Cliente c", Cliente.class)
+      .getResultList();
   }
 }

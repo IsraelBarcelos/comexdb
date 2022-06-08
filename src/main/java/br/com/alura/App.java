@@ -44,14 +44,25 @@ public class App {
     produtoDao.cadastrar(produto);
     clienteDao.cadastrar(cliente);
 
-    Pedido pedido = new Pedido(
+    Pedido pedido1 = new Pedido(
       LocalDate.now(),
-      cliente.getId(),
+      cliente,
       new BigDecimal(0),
-      TipoDesconto.NENHUM
+      TipoDescontoPedido.NENHUM
     );
-    pedidoDao.cadastrar(pedido);
+
+    Pedido pedido2 = new Pedido(
+      LocalDate.now(),
+      cliente,
+      new BigDecimal(10),
+      TipoDescontoPedido.FIDELIDADE
+    );
+
+    pedidoDao.cadastrar(pedido1);
+    pedidoDao.cadastrar(pedido2);
 
     em.getTransaction().commit();
+
+    clienteDao.listaTodos().forEach(System.out::println);
   }
 }
