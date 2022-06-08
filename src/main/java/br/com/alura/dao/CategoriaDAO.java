@@ -42,7 +42,7 @@ public class CategoriaDAO {
       BigDecimal soma = new ProdutoDAO(em).produtosDeUmaCategoria(categoria).stream().reduce(BigDecimal.ZERO,
           (total, produto) -> total.add(produto.getPrecoUnitario()),
           (total, total2) -> total.add(total2));
-      System.out.println(soma);
+      System.out.println("Categoria " + categoria.getNome() + " tem soma = " + soma);
     }
 
     );

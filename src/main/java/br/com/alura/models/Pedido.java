@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -86,38 +86,5 @@ public class Pedido {
     public void adicionarItemPedido(ItemPedido itemPedido) {
         itemPedido.setPedido(this);
         this.itens.add(itemPedido);
-    }
-
-    public static class Builder {
-
-        private Pedido pedido;
-
-        public Builder() {
-            this.pedido = new Pedido();
-        }
-
-        public Builder comData(LocalDate data) {
-            this.pedido.data = data;
-            return this;
-        }
-
-        public Builder comCliente(Cliente cliente) {
-            this.pedido.cliente = cliente;
-            return this;
-        }
-
-        public Builder comDesconto(BigDecimal desconto) {
-            this.pedido.desconto = desconto;
-            return this;
-        }
-
-        public Builder comTipoDesconto(TipoDescontoPedido tipoDescontoPedido) {
-            this.pedido.tipoDesconto = tipoDescontoPedido;
-            return this;
-        }
-
-        public Pedido build() {
-            return this.pedido;
-        }
     }
 }

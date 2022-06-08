@@ -1,12 +1,8 @@
 package br.com.alura.mains;
 
 import br.com.alura.dao.ClienteDAO;
-import br.com.alura.dao.PedidoDAO;
-import br.com.alura.dao.ProdutoDAO;
 import br.com.alura.models.*;
 import br.com.alura.utils.JPAUtil;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import javax.persistence.EntityManager;
 
 /**

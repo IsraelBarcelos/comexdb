@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -82,32 +82,4 @@ public class Cliente {
                 + "]";
     }
 
-    public static class Builder {
-
-        private Cliente cliente;
-
-        public Builder comNome(String nome) {
-            cliente.nome = nome;
-            return this;
-        }
-
-        public Builder comCpf(String cpf) {
-            cliente.cpf = cpf;
-            return this;
-        }
-
-        public Builder comTelefone(String telefone) {
-            cliente.telefone = telefone;
-            return this;
-        }
-
-        public Builder comEndereco(Endereco endereco) {
-            cliente.endereco = endereco;
-            return this;
-        }
-
-        public Cliente build() {
-            return cliente;
-        }
-    }
 }

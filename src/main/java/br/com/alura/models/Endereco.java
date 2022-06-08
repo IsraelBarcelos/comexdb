@@ -83,42 +83,4 @@ public class Endereco {
         '}';
   }
 
-  public static class Builder {
-
-    private Endereco endereco;
-
-    public Builder comRua(String rua) {
-      endereco.rua = rua;
-      return this;
-    }
-
-    public Builder comNumero(int numero) {
-      endereco.numero = numero;
-      return this;
-    }
-
-    public Builder comComplemento(String complemento) {
-      endereco.complemento = complemento;
-      return this;
-    }
-
-    public Builder comBairro(String bairro) {
-      endereco.bairro = bairro;
-      return this;
-    }
-
-    public Builder comCidade(String cidade) {
-      endereco.cidade = cidade;
-      return this;
-    }
-
-    public Builder comEstado(String estado) {
-      endereco.estado = estado;
-      return this;
-    }
-
-    public Endereco build() {
-      return endereco;
-    }
-  }
 }

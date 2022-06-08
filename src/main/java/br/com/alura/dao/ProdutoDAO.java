@@ -26,7 +26,7 @@ public class ProdutoDAO {
     public List<Produto> listaIndisponiveis() {
         return em
                 .createQuery(
-                        "select p from Produto p where p.quantidade_estoque = 0",
+                        "select p from Produto p where p.quantidadeEstoque = 0",
                         Produto.class)
                 .getResultList();
     }
@@ -35,7 +35,7 @@ public class ProdutoDAO {
         return this.em.createQuery(
                 "select p from Produto p where p.categoria = :categoria",
                 Produto.class)
-                .setParameter("categoria", categoria.getNome())
+                .setParameter("categoria", categoria)
                 .getResultList();
     }
 }

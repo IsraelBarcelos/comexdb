@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Categoria {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   public Categoria() {
@@ -58,31 +58,4 @@ public class Categoria {
         '}';
   }
 
-  public static class Builder {
-
-    private Categoria categoria;
-
-    public Builder() {
-      categoria = new Categoria();
-    }
-
-    public Builder comNome(String nome) {
-      categoria.setNome(nome);
-      return this;
-    }
-
-    public Builder ativo() {
-      categoria.setAtivo(true);
-      return this;
-    }
-
-    public Builder naoAtivo() {
-      categoria.setAtivo(false);
-      return this;
-    }
-
-    public Categoria build() {
-      return categoria;
-    }
-  }
 }

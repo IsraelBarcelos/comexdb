@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Produto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -22,13 +22,12 @@ public class Produto {
 
     private String descricao;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "preco_unitario")
     private BigDecimal precoUnitario;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "quantidade_estoque")
     private int quantidadeEstoque;
 
-    @Column(nullable = false)
     @OneToOne
     private Categoria categoria;
 
@@ -92,41 +91,4 @@ public class Produto {
                 '}';
     }
 
-    public static class Builder {
-
-        private Produto produto;
-
-        public Builder() {
-            this.produto = new Produto();
-        }
-
-        public Builder comNome(String nome) {
-            this.produto.nome = nome;
-            return this;
-        }
-
-        public Builder comDescricao(String descricao) {
-            this.produto.descricao = descricao;
-            return this;
-        }
-
-        public Builder comPrecoUnitario(BigDecimal precoUnitario) {
-            this.produto.precoUnitario = precoUnitario;
-            return this;
-        }
-
-        public Builder comQuantidadeEstoque(int quantidadeEstoque) {
-            this.produto.quantidadeEstoque = quantidadeEstoque;
-            return this;
-        }
-
-        public Builder comCategoria(Categoria categoria) {
-            this.produto.categoria = categoria;
-            return this;
-        }
-
-        public Produto build() {
-            return this.produto;
-        }
-    }
 }

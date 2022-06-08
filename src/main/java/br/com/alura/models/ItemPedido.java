@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class ItemPedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)
@@ -84,41 +84,4 @@ public class ItemPedido {
         return this.getValorTotal().subtract(this.desconto);
     }
 
-    public static class Builder {
-
-        private ItemPedido itemPedido;
-
-        public Builder() {
-            itemPedido = new ItemPedido();
-        }
-
-        public Builder comPrecoUnitario(BigDecimal precoUnitario) {
-            itemPedido.precoUnitario = precoUnitario;
-            return this;
-        }
-
-        public Builder comQuantidade(int quantidade) {
-            itemPedido.quantidade = quantidade;
-            return this;
-        }
-
-        public Builder comProduto(Produto produto) {
-            itemPedido.produto = produto;
-            return this;
-        }
-
-        public Builder comPedido(Pedido pedido) {
-            itemPedido.pedido = pedido;
-            return this;
-        }
-
-        public Builder comDesconto(BigDecimal desconto) {
-            itemPedido.desconto = desconto;
-            return this;
-        }
-
-        public ItemPedido build() {
-            return itemPedido;
-        }
-    }
 }

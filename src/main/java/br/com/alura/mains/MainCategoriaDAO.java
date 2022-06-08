@@ -1,5 +1,6 @@
 package br.com.alura.mains;
 
+import br.com.alura.builders.CategoriaBuilder;
 import br.com.alura.dao.CategoriaDAO;
 import br.com.alura.models.Categoria;
 import br.com.alura.utils.JPAUtil;
@@ -14,17 +15,17 @@ public class MainCategoriaDAO {
 
     CategoriaDAO categoriaDAO = new CategoriaDAO(em);
 
-    Categoria categoria1 = new Categoria.Builder()
+    Categoria categoria1 = new CategoriaBuilder()
         .ativo()
         .comNome("carros")
         .build();
 
-    Categoria categoria2 = new Categoria.Builder()
+    Categoria categoria2 = new CategoriaBuilder()
         .ativo()
         .comNome("motos")
         .build();
 
-    Categoria categoria3 = new Categoria.Builder()
+    Categoria categoria3 = new CategoriaBuilder()
         .ativo()
         .comNome("avioes")
         .build();
