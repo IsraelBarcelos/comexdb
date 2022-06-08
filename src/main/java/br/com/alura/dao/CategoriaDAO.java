@@ -2,9 +2,9 @@ package br.com.alura.dao;
 
 import javax.persistence.EntityManager;
 
-public class CategoriaDao extends BasicDao {
+public class CategoriaDAO extends BasicDAO {
 
-  public CategoriaDao(EntityManager em) {
+  public CategoriaDAO(EntityManager em) {
     super(em);
   }
 }
