@@ -1,4 +1,4 @@
-package br.com.alura;
+package br.com.alura.mains;
 
 import br.com.alura.dao.ClienteDAO;
 import br.com.alura.dao.PedidoDAO;
