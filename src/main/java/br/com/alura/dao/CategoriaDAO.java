@@ -1,6 +1,10 @@
 package br.com.alura.dao;
 
 import br.com.alura.models.Categoria;
+
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 public class CategoriaDAO {
@@ -26,4 +30,22 @@ public class CategoriaDAO {
   public void atualiza(Categoria categoria) {
     em.merge(categoria);
   }
+
+  public List<Categoria> listaTodos() {
+    return this.em.createQuery("select c from Categoria c", Categoria.class)
+        .getResultList();
+  }
+
+  public void relatorioMontantePorCategoria() {
+    List<Categoria> categorias = this.listaTodos();
+    categorias.stream().forEach(categoria -> {
+      BigDecimal soma = new ProdutoDAO(em).produtosDeUmaCategoria(categoria).stream().reduce(BigDecimal.ZERO,
+          (total, produto) -> total.add(produto.getPrecoUnitario()),
+          (total, total2) -> total.add(total2));
+      System.out.println(soma);
+    }
+
+    );
+  }
+
 }

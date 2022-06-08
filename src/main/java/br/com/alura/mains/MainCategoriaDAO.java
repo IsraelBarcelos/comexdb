@@ -15,24 +15,35 @@ public class MainCategoriaDAO {
     CategoriaDAO categoriaDAO = new CategoriaDAO(em);
 
     Categoria categoria1 = new Categoria.Builder()
-      .ativo()
-      .comNome("carros")
-      .build();
+        .ativo()
+        .comNome("carros")
+        .build();
 
     Categoria categoria2 = new Categoria.Builder()
-      .ativo()
-      .comNome("motos")
-      .build();
+        .ativo()
+        .comNome("motos")
+        .build();
 
     Categoria categoria3 = new Categoria.Builder()
-      .ativo()
-      .comNome("avioes")
-      .build();
+        .ativo()
+        .comNome("avioes")
+        .build();
 
     categoriaDAO.cadastra(categoria1);
     categoriaDAO.cadastra(categoria2);
     categoriaDAO.cadastra(categoria3);
 
+    em.flush();
+
+    categoria1.setAtivo(false);
+
     em.getTransaction().commit();
+
+    Categoria categoria1editada = categoriaDAO.buscaPorId(categoria1.getId());
+    System.out.println(categoria1editada);
+    categoriaDAO.relatorioMontantePorCategoria();
+
+    em.close();
+
   }
 }
