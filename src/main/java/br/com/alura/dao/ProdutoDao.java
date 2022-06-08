@@ -3,12 +3,10 @@ package br.com.alura.dao;
 import br.com.alura.models.Produto;
 import javax.persistence.EntityManager;
 
-public class ProdutoDao {
-
-  EntityManager em;
+public class ProdutoDao extends BasicDao {
 
   public ProdutoDao(EntityManager em) {
-    this.em = em;
+    super(em);
   }
 
   public void cadastrar(Produto produto) {

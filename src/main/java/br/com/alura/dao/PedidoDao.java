@@ -3,12 +3,10 @@ package br.com.alura.dao;
 import br.com.alura.models.Pedido;
 import javax.persistence.EntityManager;
 
-public class PedidoDao {
-
-  private EntityManager em;
+public class PedidoDao extends BasicDao {
 
   public PedidoDao(EntityManager em) {
-    this.em = em;
+    super(em);
   }
 
   public void cadastrar(Pedido pedido) {

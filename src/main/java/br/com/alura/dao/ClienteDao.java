@@ -4,12 +4,10 @@ import br.com.alura.models.Cliente;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-public class ClienteDao {
-
-  private EntityManager em;
+public class ClienteDao extends BasicDao {
 
   public ClienteDao(EntityManager em) {
-    this.em = em;
+    super(em);
   }
 
   public void cadastrar(Cliente cliente) {
@@ -31,5 +29,14 @@ public class ClienteDao {
   public List<Cliente> listaTodos() {
     return this.em.createQuery("select c from Cliente c", Cliente.class)
       .getResultList();
+  }
+
+  public Cliente listaPorNome(String nome) {
+    return this.em.createQuery(
+        "select c from Cliente c where c.nome = :nome",
+        Cliente.class
+      )
+      .setParameter("nome", nome)
+      .getSingleResult();
   }
 }
