@@ -2,15 +2,15 @@ package br.com.alura.dao;
 
 import javax.persistence.EntityManager;
 
-public abstract class BasicDao {
+public abstract class BasicDAO {
 
   protected EntityManager em;
 
-  public BasicDao(EntityManager em) {
+  public BasicDAO(EntityManager em) {
     this.em = em;
   }
 
-  public void adicionar(Object obj) {
+  public void cadastrar(Object obj) {
     this.em.persist(obj);
   }
 

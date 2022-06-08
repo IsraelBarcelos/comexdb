@@ -1,13 +1,14 @@
 package br.com.alura;
 
-import br.com.alura.dao.ClienteDao;
-import br.com.alura.dao.PedidoDao;
-import br.com.alura.dao.ProdutoDao;
+import br.com.alura.dao.ClienteDAO;
+import br.com.alura.dao.PedidoDAO;
+import br.com.alura.dao.ProdutoDAO;
 import br.com.alura.models.*;
 import br.com.alura.utils.JPAUtil;
+
+import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import javax.persistence.EntityManager;
 
 /**
  * Hello world!
@@ -27,28 +28,27 @@ public class App {
       new Endereco("Rua dos Bobos", 0, "Apto. 101", "centro", "são paulo", "sp")
     );
     Produto produto = new Produto(
-      "Caneta",
-      "Caneta Bic Preta",
-      new BigDecimal("1.99"),
-      10,
-      1L
+            "Caneta",
+            "Caneta Bic Preta",
+            new BigDecimal("1.99"),
+            10,
+            1L
     );
 
     EntityManager em = JPAUtil.getEntityManager();
 
     em.getTransaction().begin();
 
-    ProdutoDao produtoDao = new ProdutoDao(em);
-    ClienteDao clienteDao = new ClienteDao(em);
-    PedidoDao pedidoDao = new PedidoDao(em);
+    ProdutoDAO produtoDao = new ProdutoDAO(em);
+    ClienteDAO clienteDao = new ClienteDAO(em);
+    PedidoDAO pedidoDao = new PedidoDAO(em);
     produtoDao.cadastrar(produto);
     clienteDao.cadastrar(cliente);
-
     Pedido pedido1 = new Pedido(
-      LocalDate.now(),
-      cliente,
-      new BigDecimal(0),
-      TipoDescontoPedido.NENHUM
+            LocalDate.now(),
+            cliente,
+            new BigDecimal(0),
+            TipoDescontoPedido.NENHUM
     );
 
     Pedido pedido2 = new Pedido(
