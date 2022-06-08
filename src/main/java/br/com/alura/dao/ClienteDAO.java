@@ -1,19 +1,36 @@
 package br.com.alura.dao;
 
 import br.com.alura.models.Cliente;
-
-import javax.persistence.EntityManager;
 import java.util.List;
+import javax.persistence.EntityManager;
 
-public class ClienteDAO extends BasicDAO {
+public class ClienteDAO {
+
+  private EntityManager em;
 
   public ClienteDAO(EntityManager em) {
-    super(em);
+    this.em = em;
+  }
+
+  public void cadastra(Cliente cliente) {
+    em.persist(cliente);
+  }
+
+  public Cliente buscaPorId(Long id) {
+    return em.find(Cliente.class, id);
+  }
+
+  public void remove(Cliente cliente) {
+    em.remove(cliente);
+  }
+
+  public void atualiza(Cliente cliente) {
+    em.merge(cliente);
   }
 
   public List<Cliente> listaTodos() {
     return this.em.createQuery("select c from Cliente c", Cliente.class)
-            .getResultList();
+      .getResultList();
   }
 
   public Cliente listaPorNome(String nome) {
