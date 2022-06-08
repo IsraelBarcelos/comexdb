@@ -2,6 +2,7 @@ package br.com.alura.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -25,6 +26,10 @@ public class Pedido {
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private TipoDescontoPedido tipo_desconto;
+
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "pedido_id")
+  private List<ItemPedido> itens;
 
   public Pedido() {}
 
@@ -80,19 +85,40 @@ public class Pedido {
     this.tipo_desconto = tipo_desconto;
   }
 
-  @Override
-  public String toString() {
-    return (
-      "Pedido{" +
-      "id=" +
-      id +
-      ", data=" +
-      data +
-      ", desconto=" +
-      desconto +
-      ", tipoDesconto=" +
-      tipo_desconto +
-      '}'
-    );
+  public List<ItemPedido> getItensPedido() {
+    return this.itens;
+  }
+
+  public static class Builder {
+
+    private Pedido pedido;
+
+    public Builder() {
+      this.pedido = new Pedido();
+    }
+
+    public Builder comData(LocalDate data) {
+      this.pedido.data = data;
+      return this;
+    }
+
+    public Builder comCliente(Cliente cliente) {
+      this.pedido.cliente = cliente;
+      return this;
+    }
+
+    public Builder comDesconto(BigDecimal desconto) {
+      this.pedido.desconto = desconto;
+      return this;
+    }
+
+    public Builder comTipoDesconto(TipoDescontoPedido tipoDescontoPedido) {
+      this.pedido.tipo_desconto = tipoDescontoPedido;
+      return this;
+    }
+
+    public Pedido build() {
+      return this.pedido;
+    }
   }
 }

@@ -10,13 +10,18 @@ public class Produto {
   @Id
   @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
   private Long id;
+
   @Column(nullable = false)
   private String nome;
+
   private String descricao;
+
   @Column(nullable = false)
   private BigDecimal preco_unitario;
+
   @Column(nullable = false)
   private int quantidade_estoque;
+
   @Column(nullable = false)
   private Long categoria_id;
 
@@ -84,23 +89,41 @@ public class Produto {
     this.categoria_id = categoria_id;
   }
 
-  @Override
-  public String toString() {
-    return (
-      "Produto{" +
-      "id=" +
-      id +
-      ", nome=" +
-      nome +
-      ", descricao=" +
-      descricao +
-      ", preco_unitario=" +
-      preco_unitario +
-      ", quantidade_estoque=" +
-      quantidade_estoque +
-      ", categoria_id=" +
-      categoria_id +
-      '}'
-    );
+  public static class Builder {
+
+    private Produto produto;
+
+    public Builder() {
+      this.produto = new Produto();
+    }
+
+    public Builder comNome(String nome) {
+      this.produto.nome = nome;
+      return this;
+    }
+
+    public Builder comDescricao(String descricao) {
+      this.produto.descricao = descricao;
+      return this;
+    }
+
+    public Builder comPrecoUnitario(BigDecimal preco_unitario) {
+      this.produto.preco_unitario = preco_unitario;
+      return this;
+    }
+
+    public Builder comQuantidadeEstoque(int quantidade_estoque) {
+      this.produto.quantidade_estoque = quantidade_estoque;
+      return this;
+    }
+
+    public Builder comCategoriaId(Long categoria_id) {
+      this.produto.categoria_id = categoria_id;
+      return this;
+    }
+
+    public Produto build() {
+      return this.produto;
+    }
   }
 }

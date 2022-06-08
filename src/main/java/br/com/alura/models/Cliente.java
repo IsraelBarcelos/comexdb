@@ -9,13 +9,15 @@ public class Cliente {
   @Id
   @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
   private Long id;
+
   @Column(nullable = false)
   private String nome;
+
   @Column(nullable = false)
   private String cpf;
+
   @Column(nullable = false)
   private String telefone;
-
 
   @Embedded
   private Endereco endereco;
@@ -69,39 +71,35 @@ public class Cliente {
     this.endereco = endereco;
   }
 
-  @Override
-  public String toString() {
-    return (
-      "Cliente{" +
-      "id=" +
-      id +
-      ", nome='" +
-      nome +
-      '\'' +
-      ", cpf='" +
-      cpf +
-      '\'' +
-      ", telefone='" +
-      telefone +
-      '\'' +
-      ", rua='" +
-      endereco.getRua() +
-      '\'' +
-      ", numero=" +
-      endereco.getNumero() +
-      ", complemento='" +
-      endereco.getComplemento() +
-      '\'' +
-      ", bairro='" +
-      endereco.getBairro() +
-      '\'' +
-      ", cidade='" +
-      endereco.getCidade() +
-      '\'' +
-      ", estado='" +
-      endereco.getEstado() +
-      '\'' +
-      '}'
-    );
+  public static class Builder {
+
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private Endereco endereco;
+
+    public Builder comNome(String nome) {
+      this.nome = nome;
+      return this;
+    }
+
+    public Builder comCpf(String cpf) {
+      this.cpf = cpf;
+      return this;
+    }
+
+    public Builder comTelefone(String telefone) {
+      this.telefone = telefone;
+      return this;
+    }
+
+    public Builder comEndereco(Endereco endereco) {
+      this.endereco = endereco;
+      return this;
+    }
+
+    public Cliente build() {
+      return new Cliente(nome, cpf, telefone, endereco);
+    }
   }
 }

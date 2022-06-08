@@ -33,12 +33,12 @@ public class ClienteDAO {
       .getResultList();
   }
 
-  public Cliente listaPorNome(String nome) {
+  public List<Cliente> listaPorNome(String nome) {
     return this.em.createQuery(
         "select c from Cliente c where c.nome = :nome",
         Cliente.class
       )
       .setParameter("nome", nome)
-      .getSingleResult();
+      .getResultList();
   }
 }

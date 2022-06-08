@@ -9,8 +9,10 @@ public class Categoria {
   @Id
   @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
   private Long id;
+
   @Column(nullable = false)
   private String nome;
+
   @Column(nullable = false)
   private boolean ativo;
 
@@ -38,18 +40,31 @@ public class Categoria {
     this.ativo = ativo;
   }
 
-  @Override
-  public String toString() {
-    return (
-      "Categoria{" +
-      "id=" +
-      id +
-      ", nome='" +
-      nome +
-      '\'' +
-      ", ativo=" +
-      ativo +
-      '}'
-    );
+  public static class Builder {
+
+    private Categoria categoria;
+
+    public Builder() {
+      categoria = new Categoria();
+    }
+
+    public Builder comNome(String nome) {
+      categoria.setNome(nome);
+      return this;
+    }
+
+    public Builder ativo() {
+      categoria.setAtivo(true);
+      return this;
+    }
+
+    public Builder naoAtivo() {
+      categoria.setAtivo(false);
+      return this;
+    }
+
+    public Categoria build() {
+      return categoria;
+    }
   }
 }

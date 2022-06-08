@@ -18,7 +18,7 @@ public class ItemPedido {
   @JoinColumn(name = "produto_id", referencedColumnName = "id")
   private Produto produto;
 
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "pedido_id", referencedColumnName = "id")
   private Pedido pedido;
 
@@ -76,23 +76,41 @@ public class ItemPedido {
     return this.getValorTotal().subtract(this.desconto);
   }
 
-  @Override
-  public String toString() {
-    return (
-      "ItemPedido{" +
-      "id=" +
-      id +
-      ", preco_unitario=" +
-      preco_unitario +
-      ", quantidade=" +
-      quantidade +
-      ", produto=" +
-      produto +
-      ", pedido=" +
-      pedido +
-      ", desconto=" +
-      desconto +
-      '}'
-    );
+  public static class Builder {
+
+    private ItemPedido itemPedido;
+
+    public Builder() {
+      itemPedido = new ItemPedido();
+    }
+
+    public Builder comPrecoUnitario(BigDecimal preco_unitario) {
+      itemPedido.preco_unitario = preco_unitario;
+      return this;
+    }
+
+    public Builder comQuantidade(int quantidade) {
+      itemPedido.quantidade = quantidade;
+      return this;
+    }
+
+    public Builder comProduto(Produto produto) {
+      itemPedido.produto = produto;
+      return this;
+    }
+
+    public Builder comPedido(Pedido pedido) {
+      itemPedido.pedido = pedido;
+      return this;
+    }
+
+    public Builder comDesconto(BigDecimal desconto) {
+      itemPedido.desconto = desconto;
+      return this;
+    }
+
+    public ItemPedido build() {
+      return itemPedido;
+    }
   }
 }
