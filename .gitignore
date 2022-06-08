@@ -1,12 +1,3 @@
 /.idea/
 /.vscode/
 target
-.idea/encodings.xml
-.idea/misc.xml
-src/main/java/br/com/alura/dao/CategoriaDao.java
-src/main/java/br/com/alura/dao/ProdutoDao.java
-src/main/java/br/com/alura/dao/ClienteDao.java
-src/main/java/br/com/alura/dao/CategoriaDao.java
-src/main/java/br/com/alura/dao/CategoriaDao.java
-src/main/java/br/com/alura/dao/PedidoDao.java
-src/main/java/br/com/alura/dao/ProdutoDao.java
