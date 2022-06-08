@@ -35,16 +35,6 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<Pedido>();
 
-    public Cliente() {
-    }
-
-    public Cliente(String nome, String cpf, String telefone, Endereco endereco) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.endereco = endereco;
-    }
-
     public Long getId() {
         return id;
     }
@@ -94,33 +84,30 @@ public class Cliente {
 
     public static class Builder {
 
-        private String nome;
-        private String cpf;
-        private String telefone;
-        private Endereco endereco;
+        private Cliente cliente;
 
         public Builder comNome(String nome) {
-            this.nome = nome;
+            cliente.nome = nome;
             return this;
         }
 
         public Builder comCpf(String cpf) {
-            this.cpf = cpf;
+            cliente.cpf = cpf;
             return this;
         }
 
         public Builder comTelefone(String telefone) {
-            this.telefone = telefone;
+            cliente.telefone = telefone;
             return this;
         }
 
         public Builder comEndereco(Endereco endereco) {
-            this.endereco = endereco;
+            cliente.endereco = endereco;
             return this;
         }
 
         public Cliente build() {
-            return new Cliente(nome, cpf, telefone, endereco);
+            return cliente;
         }
     }
 }

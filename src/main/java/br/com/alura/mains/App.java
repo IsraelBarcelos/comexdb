@@ -20,34 +20,11 @@ public class App {
     categoria.setNome("Informática");
     categoria.setAtivo(true);
 
-    Cliente cliente = new Cliente(
-        "Maria",
-        "123.456.789-10",
-        "(11) 98765-4321",
-        new Endereco("Rua dos Bobos", 0, "Apto. 101", "centro", "são paulo", "sp"));
-
     EntityManager em = JPAUtil.getEntityManager();
 
     em.getTransaction().begin();
 
     ClienteDAO clienteDao = new ClienteDAO(em);
-    PedidoDAO pedidoDao = new PedidoDAO(em);
-    clienteDao.cadastra(cliente);
-    Pedido pedido1 = new Pedido(
-        LocalDate.now(),
-        cliente,
-        new BigDecimal(0),
-        TipoDescontoPedido.NENHUM);
-
-    Pedido pedido2 = new Pedido(
-        LocalDate.now(),
-        cliente,
-        new BigDecimal(10),
-        TipoDescontoPedido.FIDELIDADE);
-
-    pedidoDao.cadastra(pedido1);
-    pedidoDao.cadastra(pedido2);
-
     em.getTransaction().commit();
 
     clienteDao.listaTodos().forEach(System.out::println);

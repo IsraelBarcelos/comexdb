@@ -23,24 +23,6 @@ public class Endereco {
   @Column(nullable = false)
   private String estado;
 
-  public Endereco() {
-  }
-
-  public Endereco(
-      String rua,
-      int numero,
-      String complemento,
-      String bairro,
-      String cidade,
-      String estado) {
-    this.rua = rua;
-    this.numero = numero;
-    this.complemento = complemento;
-    this.bairro = bairro;
-    this.cidade = cidade;
-    this.estado = estado;
-  }
-
   public String getRua() {
     return rua;
   }
@@ -103,51 +85,40 @@ public class Endereco {
 
   public static class Builder {
 
-    private String rua;
-    private int numero;
-    private String complemento;
-    private String bairro;
-    private String cidade;
-    private String estado;
+    private Endereco endereco;
 
     public Builder comRua(String rua) {
-      this.rua = rua;
+      endereco.rua = rua;
       return this;
     }
 
     public Builder comNumero(int numero) {
-      this.numero = numero;
+      endereco.numero = numero;
       return this;
     }
 
     public Builder comComplemento(String complemento) {
-      this.complemento = complemento;
+      endereco.complemento = complemento;
       return this;
     }
 
     public Builder comBairro(String bairro) {
-      this.bairro = bairro;
+      endereco.bairro = bairro;
       return this;
     }
 
     public Builder comCidade(String cidade) {
-      this.cidade = cidade;
+      endereco.cidade = cidade;
       return this;
     }
 
     public Builder comEstado(String estado) {
-      this.estado = estado;
+      endereco.estado = estado;
       return this;
     }
 
     public Endereco build() {
-      return new Endereco(
-          this.rua,
-          this.numero,
-          this.complemento,
-          this.bairro,
-          this.cidade,
-          this.estado);
+      return endereco;
     }
   }
 }

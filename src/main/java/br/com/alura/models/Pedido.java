@@ -39,20 +39,6 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
 
-    public Pedido() {
-    }
-
-    public Pedido(
-            LocalDate data,
-            Cliente cliente,
-            BigDecimal desconto,
-            TipoDescontoPedido tipoDescontoPedido) {
-        this.data = data;
-        this.cliente = cliente;
-        this.desconto = desconto;
-        this.tipoDesconto = tipoDescontoPedido;
-    }
-
     public LocalDate getData() {
         return data;
     }

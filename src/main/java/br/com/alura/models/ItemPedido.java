@@ -32,20 +32,6 @@ public class ItemPedido {
     @Column(nullable = false)
     private BigDecimal desconto;
 
-    public ItemPedido() {
-    }
-
-    public ItemPedido(
-            int quantidade,
-            Produto produto,
-            Pedido pedido) {
-        this.quantidade = quantidade;
-        this.produto = produto;
-        this.pedido = pedido;
-        this.desconto = pedido.getDesconto();
-        this.precoUnitario = produto.getPrecoUnitario();
-    }
-
     public Long getId() {
         return id;
     }
