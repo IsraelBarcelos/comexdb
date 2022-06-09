@@ -1,6 +1,7 @@
 package br.com.alura.dao;
 
 import br.com.alura.models.Categoria;
+import br.com.alura.models.ItemPedido;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -43,6 +44,11 @@ public class CategoriaDAO {
           (total, produto) -> total.add(produto.getPrecoUnitario()),
           (total, total2) -> total.add(total2));
       System.out.println("Categoria " + categoria.getNome() + " tem soma = " + soma);
+
+      ItemPedidoDAO itemPedidoDAO = new ItemPedidoDAO(em);
+      List<ItemPedido> itens = itemPedidoDAO.listaPorCategoria(categoria);
+      System.out.println(" e vendeu " + itens.size() + " itens");
+
     }
 
     );
