@@ -9,65 +9,65 @@ import javax.persistence.EntityManager;
 
 public class MainClienteDAO {
 
-    public static void main(String[] args) {
-        Cliente cliente1 = new ClienteBuilder()
-                .comNome("Maria")
-                .comCpf("123.456.789-10")
-                .comTelefone("(11) 98765-4321")
-                .comEndereco(
-                        new EnderecoBuilder()
-                                .comRua("Rua dos Bobos")
-                                .comNumero(0)
-                                .comComplemento("Apto. 101").comBairro("centro")
-                                .comCidade("são paulo")
-                                .comEstado("SP")
-                                .build())
-                .build();
-        Cliente cliente2 = new ClienteBuilder()
-                .comNome("Joao")
-                .comCpf("123.456.789-10")
-                .comTelefone("(11) 98765-4321")
-                .comEndereco(
-                        new EnderecoBuilder()
-                                .comRua("Rua dos Bobos")
-                                .comNumero(0)
-                                .comComplemento("Apto. 101").comBairro("centro")
-                                .comCidade("são paulo")
-                                .comEstado("SP")
-                                .build())
-                .build();
-        Cliente cliente3 = new ClienteBuilder()
-                .comNome("Maria")
-                .comCpf("123.456.789-10")
-                .comTelefone("(11) 98765-4321")
-                .comEndereco(
-                        new EnderecoBuilder()
-                                .comRua("Rua dos Bobos")
-                                .comNumero(0)
-                                .comComplemento("Apto. 101").comBairro("centro")
-                                .comCidade("são paulo")
-                                .comEstado("SP")
-                                .build())
-                .build();
+        public static void main(String[] args) {
+                // Cliente cliente1 = new ClienteBuilder()
+                // .comNome("Maria")
+                // .comCpf("123.456.789-10")
+                // .comTelefone("(11) 98765-4321")
+                // .comEndereco(
+                // new EnderecoBuilder()
+                // .comRua("Rua dos Bobos")
+                // .comNumero(0)
+                // .comComplemento("Apto. 101").comBairro("centro")
+                // .comCidade("são paulo")
+                // .comEstado("SP")
+                // .build())
+                // .build();
+                // Cliente cliente2 = new ClienteBuilder()
+                // .comNome("Joao")
+                // .comCpf("123.456.789-10")
+                // .comTelefone("(11) 98765-4321")
+                // .comEndereco(
+                // new EnderecoBuilder()
+                // .comRua("Rua dos Bobos")
+                // .comNumero(0)
+                // .comComplemento("Apto. 101").comBairro("centro")
+                // .comCidade("são paulo")
+                // .comEstado("SP")
+                // .build())
+                // .build();
+                // Cliente cliente3 = new ClienteBuilder()
+                // .comNome("Maria")
+                // .comCpf("123.456.789-10")
+                // .comTelefone("(11) 98765-4321")
+                // .comEndereco(
+                // new EnderecoBuilder()
+                // .comRua("Rua dos Bobos")
+                // .comNumero(0)
+                // .comComplemento("Apto. 101").comBairro("centro")
+                // .comCidade("são paulo")
+                // .comEstado("SP")
+                // .build())
+                // .build();
 
-        EntityManager em = JPAUtil.getEntityManager();
+                EntityManager em = JPAUtil.getEntityManager();
 
-        em.getTransaction().begin();
+                em.getTransaction().begin();
 
-        ClienteDAO clienteDAO = new ClienteDAO(em);
+                ClienteDAO clienteDAO = new ClienteDAO(em);
 
-        clienteDAO.cadastra(cliente1);
-        clienteDAO.cadastra(cliente2);
-        clienteDAO.cadastra(cliente3);
+                // clienteDAO.cadastra(cliente1);
+                // clienteDAO.cadastra(cliente2);
+                // clienteDAO.cadastra(cliente3);
 
-        clienteDAO
-                .listaPorNome(cliente3.getNome())
-                .stream()
-                .forEach(System.out::println);
+                // clienteDAO
+                // .listaPorNome(cliente3.getNome())
+                // .stream()
+                // .forEach(System.out::println);
 
-        em.getTransaction().commit();
+                // em.getTransaction().commit();
 
-        clienteDAO.relatorioCliente();
-
-    }
+                // clienteDAO.relatorioCliente();
+                clienteDAO.clientesMaisLucrativos();
+        }
 }

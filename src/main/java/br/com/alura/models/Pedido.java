@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,13 +32,15 @@ public class Pedido {
     private BigDecimal desconto;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, name = "tipo_desconto")
     private TipoDescontoPedido tipoDesconto;
 
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido")
+    private BigDecimal valorTotal = BigDecimal.ZERO;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itens = new ArrayList<>();
 
     public LocalDate getData() {
@@ -86,5 +90,6 @@ public class Pedido {
     public void adicionarItemPedido(ItemPedido itemPedido) {
         itemPedido.setPedido(this);
         this.itens.add(itemPedido);
+        this.valorTotal.add(itemPedido.getValorTotalComDesconto());
     }
 }
