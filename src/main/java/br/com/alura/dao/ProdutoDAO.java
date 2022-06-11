@@ -38,4 +38,13 @@ public class ProdutoDAO {
                 .setParameter("categoria", categoria)
                 .getResultList();
     }
+
+    public List<Produto> pedidosNuncaVendidos() {
+
+        return em.createQuery(
+                "select p from Produto p where p.id not in (select distinct ip.produto.id from ItemPedido ip)",
+                Produto.class)
+                .getResultList();
+
+    }
 }
