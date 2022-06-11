@@ -38,8 +38,6 @@ public class Pedido {
     @ManyToOne
     private Cliente cliente;
 
-    private BigDecimal valorTotal = BigDecimal.ZERO;
-
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itens = new ArrayList<>();
 
@@ -90,6 +88,5 @@ public class Pedido {
     public void adicionarItemPedido(ItemPedido itemPedido) {
         itemPedido.setPedido(this);
         this.itens.add(itemPedido);
-        this.valorTotal.add(itemPedido.getValorTotalComDesconto());
     }
 }

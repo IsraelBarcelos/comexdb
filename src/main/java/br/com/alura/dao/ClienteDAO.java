@@ -1,6 +1,7 @@
 package br.com.alura.dao;
 
 import br.com.alura.models.Cliente;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -56,5 +57,4 @@ public class ClienteDAO {
                     .println(" realizou " + new PedidoDAO(em).quantidadeDePedidosDeUmCliente(cliente) + " pedido(s)");
         }
     }
-
 }
