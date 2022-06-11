@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import br.com.alura.models.Categoria;
 import br.com.alura.models.ItemPedido;
 import br.com.alura.models.Pedido;
+import br.com.alura.vo.RelatorioDeClientesMaisLucrativosVO;
 import br.com.alura.vo.RelatorioDeProdutosMaisVendidosVO;
 
 public class ItemPedidoDAO {
@@ -65,6 +66,17 @@ public class ItemPedidoDAO {
                                 + "order by count(i.produto.id) DESC",
                         RelatorioDeProdutosMaisVendidosVO.class)
                 .setMaxResults(3)
+                .getResultList();
+    }
+
+    public List<RelatorioDeClientesMaisLucrativosVO> listaClientesMaisLucrativos() {
+        return this.em
+                .createQuery(
+                        "SELECT new br.com.alura.vo.RelatorioDeClientesMaisLucrativosVO(i.pedido.cliente, sum(i.precoUnitario * i.quantidade) as lucro) "
+                                + "from ItemPedido i "
+                                + "group by i.pedido.cliente "
+                                + "order by lucro DESC",
+                        RelatorioDeClientesMaisLucrativosVO.class)
                 .getResultList();
     }
 }
