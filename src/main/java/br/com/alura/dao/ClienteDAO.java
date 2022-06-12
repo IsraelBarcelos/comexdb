@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 public class ClienteDAO {
 
@@ -70,5 +74,27 @@ public class ClienteDAO {
         } catch (NoResultException e) {
             return new Cliente();
         }
+    }
+
+    public List<Cliente> encontrarClientesPorDadosComCriteriaAPI(String nome, String cpf, String telefone) {
+        CriteriaBuilder builder = this.em.getCriteriaBuilder();
+        CriteriaQuery<Cliente> query = builder.createQuery(Cliente.class);
+        Root<Cliente> from = query.from(Cliente.class);
+
+        Predicate filtros = builder.and();
+
+        if (nome != null && !nome.trim().equals("")) {
+            builder.and(filtros, builder.equal(from.get("nome"), nome));
+        }
+        if (cpf != null && !cpf.trim().equals("")) {
+            builder.and(filtros, builder.equal(from.get("cpf"), cpf));
+        }
+        if (telefone != null && !telefone.trim().equals("")) {
+            builder.and(filtros, builder.equal(from.get("telefone"), telefone));
+        }
+
+        query.where(filtros);
+
+        return em.createQuery(query).getResultList();
     }
 }
