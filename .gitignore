@@ -2,3 +2,9 @@
 /.vscode/
 /target
 .editorconfig
+target/classes/br/com/alura/models/Categoria.class
+target/classes/br/com/alura/models/Cliente.class
+target/classes/br/com/alura/models/Endereco.class
+target/classes/br/com/alura/models/Pedido.class
+target/classes/br/com/alura/models/Produto.class
+target/classes/META-INF/persistence.xml
