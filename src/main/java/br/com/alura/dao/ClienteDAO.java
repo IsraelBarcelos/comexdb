@@ -84,13 +84,13 @@ public class ClienteDAO {
         Predicate filtros = builder.and();
 
         if (nome != null && !nome.trim().equals("")) {
-            builder.and(filtros, builder.equal(from.get("nome"), nome));
+            filtros = builder.and(filtros, builder.equal(from.get("nome"), nome));
         }
         if (cpf != null && !cpf.trim().equals("")) {
-            builder.and(filtros, builder.equal(from.get("cpf"), cpf));
+            filtros = builder.and(filtros, builder.equal(from.get("cpf"), cpf));
         }
         if (telefone != null && !telefone.trim().equals("")) {
-            builder.and(filtros, builder.equal(from.get("telefone"), telefone));
+            filtros = builder.and(filtros, builder.equal(from.get("telefone"), telefone));
         }
 
         query.where(filtros);
