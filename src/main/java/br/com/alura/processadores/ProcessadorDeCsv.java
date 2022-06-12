@@ -7,7 +7,6 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
