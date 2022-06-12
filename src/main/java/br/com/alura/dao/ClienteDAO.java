@@ -3,7 +3,6 @@ package br.com.alura.dao;
 import br.com.alura.models.Cliente;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
