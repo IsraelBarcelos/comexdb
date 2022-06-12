@@ -7,6 +7,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
@@ -17,6 +18,7 @@ import br.com.alura.builders.EnderecoBuilder;
 import br.com.alura.builders.ItemPedidoBuilder;
 import br.com.alura.builders.PedidoBuilder;
 import br.com.alura.builders.ProdutoBuilder;
+import br.com.alura.dao.ClienteDAO;
 import br.com.alura.models.Categoria;
 import br.com.alura.models.Cliente;
 import br.com.alura.models.ItemPedido;
@@ -93,21 +95,26 @@ public class ProcessadorDeCsv implements ProcessadorInterface {
 
             String nomeDoCliente = registro[5];
 
-            Cliente clienteBanco = new ClienteBuilder()
-                    .comNome(nomeDoCliente)
-                    .comCpf("cpf")
-                    .comTelefone("telefone")
-                    .comEndereco(
-                            new EnderecoBuilder()
-                                    .comRua("rua")
-                                    .comNumero(56)
-                                    .comBairro("bairro")
-                                    .comCidade("cidade")
-                                    .comEstado("estado")
-                                    .build())
-                    .build();
+            ClienteDAO clienteDAO = new ClienteDAO(em);
+            Cliente clienteBanco = clienteDAO.listaUnicoClientePorNome(nomeDoCliente);
+            if (clienteBanco.getNome() == null) {
+                clienteBanco = new ClienteBuilder()
+                        .comNome(nomeDoCliente)
+                        .comCpf("cpf")
+                        .comTelefone("telefone")
+                        .comEndereco(
+                                new EnderecoBuilder()
+                                        .comRua("rua")
+                                        .comNumero(56)
+                                        .comBairro("bairro")
+                                        .comCidade("cidade")
+                                        .comEstado("estado")
+                                        .build())
+                        .build();
 
-            em.flush();
+                em.flush();
+
+            }
 
             LocalDate data = LocalDate.parse(
                     registro[4],

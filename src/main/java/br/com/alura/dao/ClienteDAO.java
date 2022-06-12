@@ -3,7 +3,10 @@ package br.com.alura.dao;
 import br.com.alura.models.Cliente;
 
 import java.util.List;
+import java.util.Optional;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 public class ClienteDAO {
 
@@ -55,6 +58,18 @@ public class ClienteDAO {
             System.out.print("\n" + cliente.getNome());
             System.out
                     .println(" realizou " + new PedidoDAO(em).quantidadeDePedidosDeUmCliente(cliente) + " pedido(s)");
+        }
+    }
+
+    public Cliente listaUnicoClientePorNome(String nome) {
+        try {
+            Cliente cliente = this.em.createQuery("select c from Cliente c where c.nome = :nome",
+                    Cliente.class)
+                    .setParameter("nome", nome)
+                    .getSingleResult();
+            return cliente;
+        } catch (NoResultException e) {
+            return new Cliente();
         }
     }
 }
